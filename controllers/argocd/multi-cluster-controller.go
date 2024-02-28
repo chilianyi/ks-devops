@@ -20,7 +20,6 @@ import (
 	"context"
 	"encoding/base64"
 	"encoding/json"
-
 	"github.com/go-logr/logr"
 	v1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
@@ -155,7 +154,7 @@ func getArgoClusterConfigObject(configText string) (object *ClusterConfig) {
 	rawDecodedconfig, _ := base64.StdEncoding.DecodeString(configText)
 
 	var kubeconfig *config
-	if kubeconfig = parseKubeConfig(rawDecodedconfig); kubeconfig == nil {
+	if kubeconfig, _ = parseKubeConfig(rawDecodedconfig); kubeconfig == nil {
 		return
 	}
 
